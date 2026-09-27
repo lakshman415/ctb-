@@ -61,3 +61,6 @@ Thumbs.db
 
 # ---- Personal notes (not for publication) ----
 sampledata.txt
+
+# ---- Local tooling ----
+.plantuml/
