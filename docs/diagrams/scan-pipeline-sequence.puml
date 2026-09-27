@@ -1,0 +1,46 @@
+@startuml scan-pipeline-sequence
+' CTB - How one scan cycle turns raw market data into a scored token list.
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam sequence {
+  ArrowColor #4C6EF5
+  LifeLineBorderColor #4C6EF5
+  ParticipantBorderColor #4C6EF5
+  ParticipantBackgroundColor #EEF2FF
+}
+
+title One Scan Cycle : From Raw Market Data to a Ranked List
+
+participant "Scheduler" as S
+participant "Scanner\nService" as SC
+participant "DexScreener\nAPI" as DX
+participant "Filter\nPipeline" as F
+participant "Scoring\nService" as SCO
+database "Database" as DB
+participant "Frontend" as FE
+
+S -> SC : trigger scan (timer fires)
+SC -> DX : GET latest pairs for each chain
+DX --> SC : raw token data (price, volume, liquidity)
+SC -> F : pass raw tokens
+note right of F
+  Drops tokens that fail:
+  - too little liquidity
+  - too little volume
+  - too new / too old
+  - bad buy/sell ratio
+end note
+F --> SC : tokens that survived
+SC -> SCO : score survivors
+note right of SCO
+  Weighted score 0-100 from
+  liquidity, volume, buy pressure,
+  age, socials, price trend
+end note
+SCO --> SC : scored + ranked tokens
+SC -> DB : save snapshot
+FE -> DB : (via API) read latest ranked tokens
+FE --> FE : render table for the trader
+
+@enduml

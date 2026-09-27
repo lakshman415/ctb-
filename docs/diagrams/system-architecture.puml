@@ -1,0 +1,54 @@
+@startuml system-architecture
+' CTB - Crypto Trading Brain : High-level system architecture
+' Render at https://www.plantuml.com/plantuml or with the PlantUML VS Code extension.
+
+skinparam backgroundColor #FFFFFF
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam rectangle {
+  BorderColor #4C6EF5
+  BackgroundColor #EEF2FF
+}
+skinparam database {
+  BorderColor #2B8A3E
+  BackgroundColor #EBFBEE
+}
+skinparam cloud {
+  BorderColor #E8590C
+  BackgroundColor #FFF4E6
+}
+
+title CTB - Crypto Trading Brain : System Architecture
+
+actor "Trader\n(you)" as User
+
+rectangle "Frontend (React + Vite)" as FE {
+  rectangle "Trending / Scanner /\nWatchlist / Journal pages" as Pages
+}
+
+rectangle "Backend (FastAPI, Python 3.12)" as BE {
+  rectangle "REST API\n/api/v1/*" as API
+  rectangle "Scanner Service\n(runs on a timer)" as Scanner
+  rectangle "Filter Pipeline\n(liquidity, volume, age...)" as Filters
+  rectangle "Scoring Service\n(weighted 0-100 score)" as Scoring
+  rectangle "Scheduler\n(APScheduler)" as Sched
+}
+
+database "Database\n(SQLite dev /\nPostgreSQL prod)" as DB
+
+cloud "DexScreener API\n(live market data)" as Dex
+cloud "GMGN API\n(trending, optional)" as Gmgn
+
+User --> Pages : views tokens in browser
+Pages --> API : HTTP (JSON)
+
+Sched --> Scanner : every N seconds
+Scanner --> Dex : fetch pairs / prices
+Scanner --> Gmgn : fetch trending
+Scanner --> Filters : raw tokens
+Filters --> Scoring : tokens that pass
+Scoring --> DB : store scored tokens
+API --> DB : read/write
+
+@enduml

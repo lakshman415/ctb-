@@ -1,0 +1,60 @@
+@startuml component-structure
+' CTB backend package layout, expressed as a component diagram.
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam package {
+  BorderColor #4C6EF5
+  BackgroundColor #F8F9FF
+}
+skinparam rectangle {
+  BorderColor #364FC7
+  BackgroundColor #EEF2FF
+}
+
+title Backend Package Layout (app/)
+
+package "api/v1" {
+  rectangle "health" 
+  rectangle "scanner"
+  rectangle "tokens"
+  rectangle "trending"
+  rectangle "watchlist"
+  rectangle "journal"
+  rectangle "analysis"
+  rectangle "wallet"
+}
+
+package "services" {
+  rectangle "scanner_service"
+  rectangle "scoring_service"
+  rectangle "categorizer"
+  rectangle "snapshot_service"
+  rectangle "alert_service"
+}
+
+package "filters" {
+  rectangle "pipeline"
+  rectangle "liquidity_filter"
+  rectangle "volume_filter"
+  rectangle "age_filter"
+  rectangle "market_cap_filter"
+  rectangle "buy_sell_ratio_filter"
+}
+
+package "clients" {
+  rectangle "dexscreener"
+  rectangle "gmgn"
+}
+
+package "models / repositories" {
+  rectangle "Token / Snapshot"
+  rectangle "Watchlist / Journal"
+}
+
+"api/v1" --> "services"
+"services" --> "filters"
+"services" --> "clients"
+"services" --> "models / repositories"
+
+@enduml

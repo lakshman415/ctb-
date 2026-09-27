@@ -1,0 +1,63 @@
+# ---- Python / backend ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables (NEVER commit real secrets)
+.env
+*.env
+!.env.example
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Databases (local dev data — do not publish)
+*.db
+*.sqlite
+*.sqlite3
+
+# Cached market data
+backend/data/candles/
+
+# Alembic
+alembic/versions/__pycache__/
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+
+# ---- Node / frontend ----
+node_modules/
+frontend/dist/
+frontend/node_modules/
+*.tsbuildinfo
+.eslintcache
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Personal notes (not for publication) ----
+sampledata.txt

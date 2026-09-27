@@ -1,0 +1,26 @@
+# Docker Compose - will be fully configured during deployment phase
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ctb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ctb_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-ctb_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # backend:
+  #   build: ./backend
+  #   depends_on:
+  #     - db
+  #   ports:
+  #     - "8000:8000"
+  #   env_file:
+  #     - .env
+
+volumes:
+  postgres_data:
