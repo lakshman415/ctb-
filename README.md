@@ -68,61 +68,98 @@ A fuller glossary and a deeper walkthrough live in
 ## Screenshots
 
 > The app is not deployed publicly, so these screenshots show it running locally.
-> Images live in [`docs/screenshots/`](docs/screenshots/). If a picture below is not
-> showing yet, that screenshot has not been added - see that folder's README for the
-> exact file names.
+> Each image has a short caption explaining what you are looking at. Full-size images
+> live in [`docs/screenshots/`](docs/screenshots/).
 
 ### Trending - what's hot right now
-Live trending tokens across chains, filterable by network and time window.
 
 ![Trending page](docs/screenshots/trending.png)
 
+*The Trending page ranks the tokens getting the most attention right now. Use the tabs
+at the top to filter by blockchain (All / SOL / ETH / BNB / Base / Robinhood) or by time
+window (5m to 24h). Each row shows the token, its chain, market cap, volume, liquidity,
+price change, and buy/sell ratio. The right-hand **Signal** column flags what stands out -
+for example "Vol spike" (a sudden jump in trading) or "Thin liq" (dangerously low
+liquidity).*
+
 ### Scanner - the ranked opportunity list
-Every token that passes the filters, scored 0-100 and grouped by market-cap tier.
 
 ![Scanner page](docs/screenshots/scanner.png)
 
+*The Scanner shows every token that survived the automated filters, each given a **score
+from 0 to 100** (leftmost column) and sorted best-first. The tabs group tokens by
+market-cap tier (Early / Mid / Large). The footer shows how many pairs were swept and
+when the last scan ran. This is the core "which tokens are worth a look" view.*
+
 ### Token Analysis - deep dive on one token
-Paste any contract address to get a grade, key metrics, price chart, and a full
-technical breakdown.
 
 ![Token analysis](docs/screenshots/token-analysis.png)
 
+*Paste any token's contract address and pick its chain to get a full breakdown. The card
+on the right gives an overall **letter grade, a 0-100 score, and a risk level**. Below
+are the key metrics (price, market cap, liquidity, 24h volume) and short-term price
+changes. The **Key Signals** panel summarizes, in plain English, what a trader would
+notice - here, "all timeframes red" warning against buying a falling token. An
+interactive price chart sits underneath.*
+
 <details>
-<summary><b>More Token Analysis views (technical analysis)</b></summary>
+<summary><b>More Token Analysis views (the technical-analysis detail)</b></summary>
 
 **Key signals + price chart**
 ![Signals and chart](docs/screenshots/token-analysis-signals.png)
+*The actionable signals shown first, followed by the live candlestick price chart.*
 
 **Assessment - grade breakdown**
 ![Assessment tab](docs/screenshots/token-analysis-assessment.png)
+*Each factor behind the overall grade, scored individually: liquidity health, volume
+quality, buy pressure, token age, trend, and volatility - with a one-line "why it
+matters" next to each.*
 
 **Support / resistance levels**
 ![Levels tab](docs/screenshots/token-analysis-levels.png)
+*Market-cap levels where buyers tend to step in (support) or where a rally tends to
+stall (resistance), with the distance from the current price.*
 
 **Activity - transactions, volume, metadata**
 ![Activity tab](docs/screenshots/token-analysis-activity.png)
+*Buy vs sell counts, volume across timeframes, and token metadata (age, socials, links).*
 
 </details>
 
 ### Watchlist - track and get alerted
-Save tokens, watch them live, and get alerted when your conditions are met.
 
 ![Watchlist page](docs/screenshots/watchlist.png)
 
+*Save interesting tokens to named lists and watch them update live. You can set alert
+conditions (e.g. price or volume crossing a threshold) so the app flags a token the
+moment your condition is met.*
+
+<details>
+<summary><b>Watchlist alerts</b></summary>
+
+![Watchlist alerts](docs/screenshots/watchlist-alerts.png)
+*The Triggered Alerts panel: conditions that have been met since you last checked.*
+
+</details>
+
 ### Trade Journal - review and improve
-Log trades, capture learnings, and run a pre-trade checklist.
 
 ![Journal page](docs/screenshots/journal.png)
+
+*A place to log trades and review them. The Trade Review tab lists your trades in a
+compact table; the other tabs hold running "learnings" and a reusable pre-trade
+checklist - the discipline layer that turns individual trades into a repeatable process.*
 
 <details>
 <summary><b>More Journal views</b></summary>
 
 **Learnings**
 ![Journal learnings](docs/screenshots/journal-learnings.png)
+*A running list of lessons captured from past trades.*
 
 **Pre-trade checklist**
 ![Journal checklist](docs/screenshots/journal-checklist.png)
+*A reusable checklist to run before entering a trade, so nothing gets skipped.*
 
 </details>
 
